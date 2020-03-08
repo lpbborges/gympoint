@@ -51,8 +51,6 @@ export default createGlobalStyle`
     font-weight: bold;
     color: #444;
 
-    display: block;
-
     margin-bottom: 8px;
   }
 

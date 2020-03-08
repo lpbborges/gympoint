@@ -182,7 +182,7 @@ export default function RegistrationForm({ history, match }) {
         </aside>
       </header>
       <Form id="registration-form" onSubmit={handleSubmit}>
-        <div className="input-block">
+        <div>
           <Select
             name="student_id"
             label="ALUNO"
@@ -192,8 +192,8 @@ export default function RegistrationForm({ history, match }) {
             options={loadOptionStudents}
           />
         </div>
-        <div id="input-group">
-          <div className="input-block">
+        <div className="input-line">
+          <div className="select">
             <Select
               styles={selectStyles}
               name="plan_id"
@@ -203,7 +203,7 @@ export default function RegistrationForm({ history, match }) {
               onChange={setPlan}
             />
           </div>
-          <div className="input-block">
+          <div className="input-form">
             <DatePicker
               name="start_date"
               label="INÍCIO"
@@ -211,11 +211,11 @@ export default function RegistrationForm({ history, match }) {
               onChangeDate={setStartDate}
             />
           </div>
-          <div className="input-block">
+          <div className="input-form">
             <label htmlFor="end_date">TÉRMINO</label>
             <input id="end_date" value={endDate} disabled />
           </div>
-          <div className="input-block">
+          <div className="input-form">
             <label htmlFor="price">VALOR FINAL</label>
             <input id="price" value={totalPrice} disabled />
           </div>

@@ -29,12 +29,31 @@ export const Container = styled.div`
     background: #fff;
     border-radius: 4px;
 
-    div.input-group {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+    label {
+      display: block;
+    }
+
+    div.input-line {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
       margin-top: 20px;
+
+      div.select {
+        flex: 1;
+        margin-right: 10px;
+        display: block;
+      }
+
+      div.input-form + div.input-form {
+        margin-left: 10px;
+
+        input {
+          height: 42px;
+        }
+      }
     }
 
     .react-datepicker-wrapper input {
