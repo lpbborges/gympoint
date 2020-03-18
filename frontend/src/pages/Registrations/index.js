@@ -16,16 +16,17 @@ import { Container, Content, Table } from './styles';
 export default function Registrations({ history }) {
   const [registrations, setRegistrations] = useState([]);
   const [page, setPage] = useState(1);
+  const [rowsCount, setRowsCount] = useState(0);
 
   useEffect(() => {
     async function loadRegistrations() {
-      const response = await api.get('registrations', {
+      const { data } = await api.get('registrations', {
         params: {
           page,
         },
       });
 
-      const data = response.data.map(r => {
+      const registrationArray = data.registrations.map(r => {
         const startDateFormatted = format(
           parseISO(r.start_date),
           "d 'de' MMMM 'de' yyyy",
@@ -48,7 +49,8 @@ export default function Registrations({ history }) {
         };
       });
 
-      setRegistrations(data);
+      setRowsCount(data.count);
+      setRegistrations(registrationArray);
     }
 
     loadRegistrations();
@@ -126,7 +128,7 @@ export default function Registrations({ history }) {
           </tbody>
         </Table>
       </Content>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} count={rowsCount} setPage={setPage} />
     </Container>
   );
 }

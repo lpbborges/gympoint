@@ -16,16 +16,17 @@ import { Container, Content, Table } from './styles';
 export default function Plans({ history }) {
   const [plans, setPlans] = useState([]);
   const [page, setPage] = useState(1);
+  const [rowsCount, setRowsCount] = useState(0);
 
   useEffect(() => {
     async function loadPlans() {
-      const response = await api.get('plans', {
+      const { data } = await api.get('plans', {
         params: {
           page,
         },
       });
 
-      const data = response.data.map(plan => {
+      const planArray = data.plans.map(plan => {
         const formatedPrice = formatPrice(plan.price);
 
         const amountMonths =
@@ -39,7 +40,8 @@ export default function Plans({ history }) {
         };
       });
 
-      setPlans(data);
+      setRowsCount(data.count);
+      setPlans(planArray);
     }
 
     loadPlans();
@@ -103,7 +105,7 @@ export default function Plans({ history }) {
           </tbody>
         </Table>
       </Content>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} count={rowsCount} setPage={setPage} />
     </Container>
   );
 }

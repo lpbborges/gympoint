@@ -12,7 +12,7 @@ class RegistrationController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const registrations = await Registration.findAll({
+    const { rows: registrations, count } = await Registration.findAndCountAll({
       order: ['end_date'],
       limit: 10,
       offset: (page - 1) * 10,
@@ -37,7 +37,7 @@ class RegistrationController {
       ],
     });
 
-    return res.json(registrations);
+    return res.json({ count, registrations });
   }
 
   async show(req, res) {

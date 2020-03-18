@@ -22,6 +22,7 @@ export default function HelpOrders() {
   const [answerModal, setAnswerModal] = useState({});
   const [helpOrders, setHelpOrders] = useState([]);
   const [page, setPage] = useState(1);
+  const [rowsCount, setRowsCount] = useState(0);
 
   function showModal({ helpOrder }) {
     setAnswerModal({ helpOrder, show: true });
@@ -39,7 +40,11 @@ export default function HelpOrders() {
         },
       });
 
-      setHelpOrders(data);
+      console.tron.log(data.count);
+      console.tron.log(data.helpOrders);
+
+      setRowsCount(data.count);
+      setHelpOrders(data.helpOrders);
     }
 
     loadHelpOrders();
@@ -126,7 +131,7 @@ export default function HelpOrders() {
           </tbody>
         </Table>
       </Content>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} count={rowsCount} setPage={setPage} />
     </Container>
   );
 }

@@ -8,7 +8,7 @@ class StudentController {
   async index(req, res) {
     const { name, page = 1, order_field } = req.query;
 
-    const students = await Student.findAll({
+    const { rows: students, count } = await Student.findAndCountAll({
       where: name ? { name: { [Op.startsWith]: name } } : null,
       order: order_field ? [order_field] : ['id'],
       limit: 10,
@@ -16,7 +16,7 @@ class StudentController {
       attributes: ['id', 'name', 'email', 'age', 'weight', 'height'],
     });
 
-    return res.json(students);
+    return res.json({ count, students });
   }
 
   async auth(req, res) {

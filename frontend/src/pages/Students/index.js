@@ -14,6 +14,7 @@ import { Container, Content, Table } from './styles';
 export default function Students({ history }) {
   const [students, setStudents] = useState([]);
   const [page, setPage] = useState(1);
+  const [rowsCount, setRowsCount] = useState(0);
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -25,7 +26,8 @@ export default function Students({ history }) {
         },
       });
 
-      setStudents(data);
+      setRowsCount(data.count);
+      setStudents(data.students);
     }
 
     loadStudents();
@@ -98,7 +100,7 @@ export default function Students({ history }) {
           </tbody>
         </Table>
       </Content>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} count={rowsCount} setPage={setPage} />
     </Container>
   );
 }

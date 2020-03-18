@@ -10,7 +10,7 @@ class AnswerOrderController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const helpOrders = await HelpOrder.findAll({
+    const { rows: helpOrders, count } = await HelpOrder.findAndCountAll({
       where: { answer: null, answer_at: null },
       order: ['created_at'],
       attributes: ['id', 'student_id', 'question'],
@@ -24,7 +24,7 @@ class AnswerOrderController {
       limit: 10,
     });
 
-    return res.json(helpOrders);
+    return res.json({ count, helpOrders });
   }
 
   async store(req, res) {

@@ -6,14 +6,14 @@ class PlanController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const plans = await Plan.findAll({
+    const { rows: plans, count } = await Plan.findAndCountAll({
       order: ['id'],
       limit: 10,
       offset: (page - 1) * 10,
       attributes: ['id', 'title', 'duration', 'price'],
     });
 
-    return res.json(plans);
+    return res.json({ count, plans });
   }
 
   async show(req, res) {
