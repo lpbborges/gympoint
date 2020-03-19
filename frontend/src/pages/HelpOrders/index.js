@@ -40,9 +40,6 @@ export default function HelpOrders() {
         },
       });
 
-      console.tron.log(data.count);
-      console.tron.log(data.helpOrders);
-
       setRowsCount(data.count);
       setHelpOrders(data.helpOrders);
     }
