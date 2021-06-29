@@ -14,7 +14,7 @@ Use [git](https://github.com/lpbborges/gympoint/) clone  para clonar o Gympoint.
 git clone https://github.com/lpbborges/gympoint.git
 ```
 
-<p>Copie o arquivo .env.example com o nome .env para inofrmar as suas variáveis de ambiente</p>
+<p>Copie o arquivo .env.example com o nome .env para informar as suas variáveis de ambiente</p>
 
 ```bash
 cp .env.example .env
